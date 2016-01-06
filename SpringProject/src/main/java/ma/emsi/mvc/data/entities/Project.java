@@ -9,7 +9,7 @@ public class Project {
 
 	private String description;
 
-	private String sponsor;
+	private Sponsor sponsor;
 
 	private BigDecimal authorizedHours;
 
@@ -45,11 +45,11 @@ public class Project {
 		this.description = description;
 	}
 
-	public String getSponsor() {
+	public Sponsor getSponsor() {
 		return sponsor;
 	}
 
-	public void setSponsor(String sponsor) {
+	public void setSponsor(Sponsor sponsor) {
 		this.sponsor = sponsor;
 	}
 
@@ -93,7 +93,7 @@ public class Project {
 		this.type = type;
 	}
 
-	public Project(Long projectId, String name, String description, String sponsor, BigDecimal authorizedHours,
+	public Project(Long projectId, String name, String description, Sponsor sponsor, BigDecimal authorizedHours,
 			BigDecimal authorizedFunds, String year, boolean special, String type) {
 		super();
 		this.projectId = projectId;
