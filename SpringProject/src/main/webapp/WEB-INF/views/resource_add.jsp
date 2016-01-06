@@ -51,12 +51,12 @@
 
 				<div class="form-group">
 					<label for="unit">Unit of Measure</label> 
-					<form:radiobuttons path="unitOfMeasure" items="${radioOptions}"/>
+					<form:radiobuttons path="unitOfMeasure" items="${radioOptions}" cssClass="form-control"/>
 				</div>
 
 				<div class="form-group">
 					<label for="notes">Notes</label> 
-					<form:textarea id="notes" path="notes" class="form-control" rows="3"/>
+					<form:textarea id="notes" path="notes" cssClass="form-control" rows="3"/>
 				</div>
 						
 				<button type="submit" class="btn btn-default">Submit</button>
