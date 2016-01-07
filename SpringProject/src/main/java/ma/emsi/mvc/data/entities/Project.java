@@ -2,11 +2,16 @@ package ma.emsi.mvc.data.entities;
 
 import java.math.BigDecimal;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Project {
 	private Long projectId;
 
+	@Length(min=5, message="The name is too short !")
 	private String name;
 
+	@NotBlank(message="You need to add a description !")
 	private String description;
 
 	private Sponsor sponsor;

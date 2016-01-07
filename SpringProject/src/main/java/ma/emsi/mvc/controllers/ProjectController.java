@@ -2,9 +2,12 @@ package ma.emsi.mvc.controllers;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,23 +36,32 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String addProject(Model model){
+	public String addProject(Model model) {
 
-		model.addAttribute("types", new ArrayList<String>(){{
-			add("");
-			add("Single Year");
-			add("Multi Year");
-		}});
-		
+		model.addAttribute("types", new ArrayList<String>() {
+			{
+				add("");
+				add("Single Year");
+				add("Multi Year");
+			}
+		});
+
 		model.addAttribute("project", new Project());
 
 		return "project_add";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String saveProject(@ModelAttribute Project project) {
+	public String saveProject(@Valid @ModelAttribute Project project, Errors errors) {
+		if (!errors.hasErrors()) {
+			System.out.println("The project Validated !");
+		} else {
+			System.out.println("The project did not validate.");
+			return "project_add";
+		}
 		System.out.println("invoking saveProject");
 		System.out.println(project);
-		return "redirect:/project/add";
+		return "project_add";
 	}
+
 }

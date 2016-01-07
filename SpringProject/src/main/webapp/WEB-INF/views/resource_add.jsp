@@ -35,6 +35,7 @@
 				<div class="form-group">
 					<label for="resource-name">Name</label> 
 					<form:input path="name" cssClass="form-control" id="resource-name"/>
+					
 				</div>
 
 				<div class="form-group">
