@@ -53,15 +53,9 @@ public class ProjectController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveProject(@Valid @ModelAttribute Project project, Errors errors) {
-		if (!errors.hasErrors()) {
-			System.out.println("The project Validated !");
-		} else {
-			System.out.println("The project did not validate.");
-			return "project_add";
-		}
+		
 		System.out.println("invoking saveProject");
-		System.out.println(project);
-		return "project_add";
+		return "redirect:/project/find";
 	}
 
 }
