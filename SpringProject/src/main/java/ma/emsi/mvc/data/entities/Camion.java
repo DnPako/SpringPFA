@@ -1,12 +1,18 @@
 package ma.emsi.mvc.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Camion {
 
-
+	@Id
+	@GeneratedValue
+	private int identifiant;
 	private String matricule;
 	private int capacite;
 	private boolean etat;
-	private int identifiant;
 	private double lattitude;
 	private double longetude;
 	private String marque;

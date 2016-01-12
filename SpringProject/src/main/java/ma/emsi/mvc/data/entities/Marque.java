@@ -1,7 +1,14 @@
 package ma.emsi.mvc.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Marque {
 
+	@Id
+	@GeneratedValue
 	private int identifiant;
 	private String nomMarque;
 	private String reference;
