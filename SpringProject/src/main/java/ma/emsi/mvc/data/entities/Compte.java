@@ -1,10 +1,14 @@
 package ma.emsi.mvc.data.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,6 +22,17 @@ public class Compte {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "identifiant", nullable = false)
 	private Utilisateur utilisateur;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "compte")
+	private Collection<Profile> m_Profile = new ArrayList<Profile>();
+	
+	public Collection<Profile> getM_Profile() {
+		return m_Profile;
+	}
+
+	public void setM_Profile(Collection<Profile> m_Profile) {
+		this.m_Profile = m_Profile;
+	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;

@@ -1,10 +1,16 @@
 package ma.emsi.mvc.data.entities;
 
-/**
- * @author h
- * @version 1.0
- * @created 30-déc.-2015 11:34:21
- */
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+
+@Entity
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.produit", 
+		joinColumns = @JoinColumn(name = "identifiant")),
+	@AssociationOverride(name = "pk.commande", 
+		joinColumns = @JoinColumn(name = "identifiant")) })
 public class LignComProd {
 
 	private int quantitéCom;

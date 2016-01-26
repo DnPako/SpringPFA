@@ -1,8 +1,13 @@
 package ma.emsi.mvc.data.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Camion {
@@ -16,6 +21,28 @@ public class Camion {
 	private double lattitude;
 	private double longetude;
 	private String marque;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.camion")
+	private Collection<Stock> m_Stock = new ArrayList<Stock>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.camion")
+	private Collection<Affectation> m_Affectation = new ArrayList<Affectation>();
+
+	public Collection<Affectation> getM_Affectation() {
+		return m_Affectation;
+	}
+
+	public void setM_Affectation(Collection<Affectation> m_Affectation) {
+		this.m_Affectation = m_Affectation;
+	}
+
+	public Collection<Stock> getM_Stock() {
+		return m_Stock;
+	}
+
+	public void setM_Stock(Collection<Stock> m_Stock) {
+		this.m_Stock = m_Stock;
+	}
 
 	public int getCapacite() {
 		return capacite;

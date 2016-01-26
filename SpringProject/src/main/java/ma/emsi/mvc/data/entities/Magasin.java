@@ -1,8 +1,11 @@
 package ma.emsi.mvc.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Magasin {
@@ -13,6 +16,18 @@ public class Magasin {
 	private String adresse;
 	private double lattitude;
 	private double longetude;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	private Profile profile;
+	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 
 	public int getIdentifiant() {
 		return identifiant;

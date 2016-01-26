@@ -1,6 +1,16 @@
 package  ma.emsi.mvc.data.entities;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 
+@Entity
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.produit", 
+		joinColumns = @JoinColumn(name = "identifiant")),
+	@AssociationOverride(name = "pk.camion", 
+		joinColumns = @JoinColumn(name = "identifiant")) })
 public class Stock {
 
 	private int QuantitéStockCamion;

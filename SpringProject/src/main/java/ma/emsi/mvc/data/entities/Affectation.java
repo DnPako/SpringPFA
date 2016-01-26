@@ -2,6 +2,17 @@ package  ma.emsi.mvc.data.entities;
 
 import java.util.Date;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+
+@Entity
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.profile", 
+		joinColumns = @JoinColumn(name = "identifiant")),
+	@AssociationOverride(name = "pk.camion", 
+		joinColumns = @JoinColumn(name = "identifiant")) })
 public class Affectation {
 
 	private Date dateAffectation;
