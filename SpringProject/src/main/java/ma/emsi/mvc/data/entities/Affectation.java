@@ -4,21 +4,37 @@ import java.util.Date;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@AssociationOverrides({
-	@AssociationOverride(name = "pk.profile", 
-		joinColumns = @JoinColumn(name = "identifiant")),
-	@AssociationOverride(name = "pk.camion", 
-		joinColumns = @JoinColumn(name = "identifiant")) })
 public class Affectation {
 
+	@Id
+	@GeneratedValue
+	@Column(name = "Affectation_ID")
+	private int identifiant;
 	private Date dateAffectation;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Profile_ID", nullable = false)
 	private Profile m_Profile;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Camion_ID", nullable = false)
 	public Camion m_Camion;
 	
+	public int getIdentifiant() {
+		return identifiant;
+	}
+
+	public void setIdentifiant(int identifiant) {
+		this.identifiant = identifiant;
+	}
 
 	public Date getDateAffectation() {
 		return dateAffectation;

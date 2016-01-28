@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ public class Categorie {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Categorie_ID")
 	private int identifiant;
 	private String Description;
 	private String intitule;

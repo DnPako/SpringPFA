@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ public class Commande {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Commande_ID")
 	private int identifiant;
 	private Date dateCommande;
 	private Date dateLivraison;
@@ -24,14 +27,14 @@ public class Commande {
 	private boolean validation;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identifiant", nullable = false)
+	@JoinColumn(name = "Profile_ID", nullable = false)
 	private Profile revendeur;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identifiant", nullable = false)
+	@JoinColumn(name = "Profile_ID", nullable = false)
 	private Profile destributeur;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.commande")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande", cascade = CascadeType.ALL)
 	private Collection<LignComProd> m_Lign = new ArrayList<LignComProd>();
 
 	public Profile getRevendeur() {

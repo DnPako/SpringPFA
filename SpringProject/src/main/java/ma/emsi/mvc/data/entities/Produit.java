@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,17 +18,18 @@ public class Produit {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Produit_ID")
 	private int identifiant;
 	private String intitule;
 	private int quantiteStock;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.produit", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit", cascade = CascadeType.ALL)
 	private Collection<Stock> m_Stock = new ArrayList<Stock>();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.produit")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit", cascade = CascadeType.ALL)
 	private Collection<LignComProd> m_Lign = new ArrayList<LignComProd>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identifiant", nullable = false)
+	@JoinColumn(name = "Marque_ID", nullable = false)
 	private Marque marque;
 	
 	public Collection<LignComProd> getM_Lign() {
@@ -78,9 +80,8 @@ public class Produit {
 		this.quantiteStock = quantiteStock;
 	}
 
-	public Produit(int identifiant, String intitule, int quantiteStock) {
+	public Produit(String intitule, int quantiteStock) {
 		super();
-		this.identifiant = identifiant;
 		this.intitule = intitule;
 		this.quantiteStock = quantiteStock;
 	}

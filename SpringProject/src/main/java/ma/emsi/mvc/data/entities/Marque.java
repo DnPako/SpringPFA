@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,12 +18,13 @@ public class Marque {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Marque_ID")
 	private int identifiant;
 	private String nomMarque;
 	private String reference;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identifiant", nullable = false)
+	@JoinColumn(name = "Categorie_ID", nullable = false)
 	private Categorie categorie;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "marque")
@@ -68,9 +70,8 @@ public class Marque {
 		this.reference = reference;
 	}
 
-	public Marque(int identifiant, String nomMarque, String reference) {
+	public Marque( String nomMarque, String reference) {
 		super();
-		this.identifiant = identifiant;
 		this.nomMarque = nomMarque;
 		this.reference = reference;
 	}

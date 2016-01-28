@@ -10,10 +10,11 @@ public class Profile {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Profile_ID")
 	private int identifiant;
 	private String typeProfile;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.profile", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profile", cascade = CascadeType.ALL)
 	private Collection<Affectation> m_Affectation = new ArrayList<Affectation>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
@@ -21,8 +22,8 @@ public class Profile {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "profile_compte", joinColumns = {
-			@JoinColumn(name = "identifiant", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "identifiant", nullable = false, updatable = false) })
+			@JoinColumn(name = "Profile_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Compte_ID", nullable = false, updatable = false) })
 	private Collection<Compte> m_Compte = new ArrayList<Compte>();
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "profile", cascade = CascadeType.ALL)
@@ -76,9 +77,8 @@ public class Profile {
 		this.typeProfile = typeProfile;
 	}
 
-	public Profile(int identifiant, String typeProfile) {
+	public Profile(String typeProfile) {
 		super();
-		this.identifiant = identifiant;
 		this.typeProfile = typeProfile;
 	}
 

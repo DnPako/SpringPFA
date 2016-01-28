@@ -3,6 +3,8 @@ package ma.emsi.mvc.data.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ public class Camion {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Camion_ID")
 	private int identifiant;
 	private String matricule;
 	private int capacite;
@@ -22,10 +25,10 @@ public class Camion {
 	private double longetude;
 	private String marque;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.camion")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion", cascade = CascadeType.ALL)
 	private Collection<Stock> m_Stock = new ArrayList<Stock>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.camion")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion", cascade = CascadeType.ALL)
 	private Collection<Affectation> m_Affectation = new ArrayList<Affectation>();
 
 	public Collection<Affectation> getM_Affectation() {

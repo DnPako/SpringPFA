@@ -1,22 +1,37 @@
 package  ma.emsi.mvc.data.entities;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@AssociationOverrides({
-	@AssociationOverride(name = "pk.produit", 
-		joinColumns = @JoinColumn(name = "identifiant")),
-	@AssociationOverride(name = "pk.camion", 
-		joinColumns = @JoinColumn(name = "identifiant")) })
 public class Stock {
 
+	@Id
+	@GeneratedValue
+	@Column(name = "Stock_ID")
+	private int identifiant;
 	private int QuantitéStockCamion;
 	private int seuils;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Camion_ID", nullable = false)
 	public Camion m_Camion;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Produit_ID", nullable = false)
 	public Produit m_Produit;
+
+	public int getIdentifiant() {
+		return identifiant;
+	}
+
+	public void setIdentifiant(int identifiant) {
+		this.identifiant = identifiant;
+	}
 
 	public Stock(){
 

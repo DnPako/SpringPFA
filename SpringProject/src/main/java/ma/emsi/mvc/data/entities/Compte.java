@@ -3,6 +3,7 @@ package ma.emsi.mvc.data.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,16 +12,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 public class Compte {
 
+	@GenericGenerator(name = "generator", strategy = "foreign", 
+			parameters = @Parameter(name = "property", value = "Profile"))
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "generator")
+	@Column(name = "Compte_ID")
 	private int identifiant;
 	private String Login;
 	private String mdp;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "identifiant", nullable = false)
+	@JoinColumn(name = "Utilisateur_ID", nullable = false)
 	private Utilisateur utilisateur;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "compte")
