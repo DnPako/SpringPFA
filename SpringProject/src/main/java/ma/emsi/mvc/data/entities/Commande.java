@@ -1,21 +1,65 @@
 package ma.emsi.mvc.data.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Commande {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "Commande_ID")
 	private int identifiant;
 	private Date dateCommande;
 	private Date dateLivraison;
 	private String libelle;
 	private boolean validation;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Profile_ID", nullable = false)
+	private Profile revendeur;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Profile_ID", nullable = false)
+	private Profile destributeur;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande", cascade = CascadeType.ALL)
+	private Collection<LignComProd> m_Lign = new ArrayList<LignComProd>();
+
+	public Profile getRevendeur() {
+		return revendeur;
+	}
+
+	public void setRevendeur(Profile revendeur) {
+		this.revendeur = revendeur;
+	}
+
+	public Profile getDestributeur() {
+		return destributeur;
+	}
+
+	public void setDestributeur(Profile destributeur) {
+		this.destributeur = destributeur;
+	}
+
+	public Collection<LignComProd> getM_Lign() {
+		return m_Lign;
+	}
+
+	public void setM_Lign(Collection<LignComProd> m_Lign) {
+		this.m_Lign = m_Lign;
+	}
 
 	public int getIdentifiant() {
 		return identifiant;
