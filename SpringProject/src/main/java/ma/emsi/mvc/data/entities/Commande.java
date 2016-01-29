@@ -26,16 +26,16 @@ public class Commande {
 	private String libelle;
 	private boolean validation;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Profile_ID", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "revend", referencedColumnName = "Profile_ID", nullable = false)
 	private Profile revendeur;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Profile_ID", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "distri", referencedColumnName = "Profile_ID", nullable = false)
 	private Profile destributeur;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande", cascade = CascadeType.ALL)
-	private Collection<LignComProd> m_Lign = new ArrayList<LignComProd>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
+	private Collection<LignComProd> lign = new ArrayList<LignComProd>();
 
 	public Profile getRevendeur() {
 		return revendeur;
@@ -53,12 +53,12 @@ public class Commande {
 		this.destributeur = destributeur;
 	}
 
-	public Collection<LignComProd> getM_Lign() {
-		return m_Lign;
+	public Collection<LignComProd> getLign() {
+		return lign;
 	}
 
-	public void setM_Lign(Collection<LignComProd> m_Lign) {
-		this.m_Lign = m_Lign;
+	public void setLign(Collection<LignComProd> lign) {
+		this.lign = lign;
 	}
 
 	public int getIdentifiant() {
@@ -101,9 +101,8 @@ public class Commande {
 		this.validation = validation;
 	}
 
-	public Commande(int identifiant, Date dateCommande, Date dateLivraison, String libelle, boolean validation) {
+	public Commande(Date dateCommande, Date dateLivraison, String libelle, boolean validation) {
 		super();
-		this.identifiant = identifiant;
 		this.dateCommande = dateCommande;
 		this.dateLivraison = dateLivraison;
 		this.libelle = libelle;

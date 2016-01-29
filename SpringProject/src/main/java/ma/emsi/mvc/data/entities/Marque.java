@@ -28,14 +28,14 @@ public class Marque {
 	private Categorie categorie;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "marque")
-	private Collection<Produit> m_Produit = new ArrayList<Produit>();
+	private Collection<Produit> produit = new ArrayList<Produit>();
 
-	public Collection<Produit> getM_Produit() {
-		return m_Produit;
+	public Collection<Produit> getProduit() {
+		return produit;
 	}
 
-	public void setM_Produit(Collection<Produit> m_Produit) {
-		this.m_Produit = m_Produit;
+	public void setProduit(Collection<Produit> m_Produit) {
+		this.produit = m_Produit;
 	}
 
 	public Categorie getCategorie() {

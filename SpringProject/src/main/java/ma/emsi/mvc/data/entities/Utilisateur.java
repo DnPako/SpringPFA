@@ -23,14 +23,15 @@ public class Utilisateur {
 	private String email;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "utilisateur")
-	private Collection<Compte> m_Compte = new ArrayList<Compte>();
+	private Collection<Compte> compte = new ArrayList<Compte>();
 
-	public Collection<Compte> getM_Compte() {
-		return m_Compte;
+	
+	public Collection<Compte> getCompte() {
+		return compte;
 	}
 
-	public void setM_Compte(Collection<Compte> m_Compte) {
-		this.m_Compte = m_Compte;
+	public void setCompte(Collection<Compte> compte) {
+		this.compte = compte;
 	}
 
 	public int getIdentifiant() {

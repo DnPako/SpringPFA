@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -21,12 +22,12 @@ public class Affectation {
 	@Column(name = "Affectation_ID")
 	private int identifiant;
 	private Date dateAffectation;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Profile_ID", nullable = false)
-	private Profile m_Profile;
-	@ManyToOne(fetch = FetchType.LAZY)
+	private Profile profile;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Camion_ID", nullable = false)
-	public Camion m_Camion;
+	public Camion camion;
 	
 	public int getIdentifiant() {
 		return identifiant;
@@ -44,32 +45,20 @@ public class Affectation {
 		this.dateAffectation = dateAffectation;
 	}
 
-	public Profile getM_Profile() {
-		return m_Profile;
+	public Profile getProfile() {
+		return profile;
 	}
 
-	public void setM_Profile(Profile m_Profile) {
-		this.m_Profile = m_Profile;
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 
-	public Camion getM_Camion() {
-		return m_Camion;
+	public Camion getCamion() {
+		return camion;
 	}
 
-	public void setM_Camion(Camion m_Camion) {
-		this.m_Camion = m_Camion;
+	public void setCamion(Camion camion) {
+		this.camion = camion;
 	}
-
-	public Affectation(){
-
-	}
-
-	public Affectation(Date dateAffectation, Profile m_Profile, Camion m_Camion) {
-		super();
-		this.dateAffectation = dateAffectation;
-		this.m_Profile = m_Profile;
-		this.m_Camion = m_Camion;
-	}
-
 
 }

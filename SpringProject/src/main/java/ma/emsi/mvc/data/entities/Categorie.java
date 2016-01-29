@@ -22,14 +22,16 @@ public class Categorie {
 	private String intitule;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "categorie")
-	private Collection<Marque> m_Marque = new ArrayList<Marque>();
+	private Collection<Marque> marque = new ArrayList<Marque>();
 	
-	public Collection<Marque> getM_Marque() {
-		return m_Marque;
+	
+
+	public Collection<Marque> getMarque() {
+		return marque;
 	}
 
-	public void setM_Marque(Collection<Marque> m_Marque) {
-		this.m_Marque = m_Marque;
+	public void setMarque(Collection<Marque> marque) {
+		this.marque = marque;
 	}
 
 	public int getIdentifiant() {
@@ -56,9 +58,8 @@ public class Categorie {
 		this.intitule = intitule;
 	}
 
-	public Categorie(int identifiant, String description, String intitule) {
+	public Categorie(String description, String intitule) {
 		super();
-		this.identifiant = identifiant;
 		Description = description;
 		this.intitule = intitule;
 	}

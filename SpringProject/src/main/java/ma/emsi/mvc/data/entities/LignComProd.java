@@ -2,6 +2,7 @@ package ma.emsi.mvc.data.entities;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -19,12 +20,12 @@ public class LignComProd {
 	@Column(name = "LignComProd_ID")
 	private int identifiant;
 	private int quantitéCom;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Commande_ID", nullable = false)
-	public Commande m_Commande;
-	@ManyToOne(fetch = FetchType.LAZY)
+	public Commande commande;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Produit_ID", nullable = false)
-	public Produit m_Produit;
+	public Produit produit;
 
 	public int getIdentifiant() {
 		return identifiant;
@@ -42,31 +43,22 @@ public class LignComProd {
 		this.quantitéCom = quantitéCom;
 	}
 
-	public Commande getM_Commande() {
-		return m_Commande;
+	public Commande getCommande() {
+		return commande;
 	}
 
-	public void setM_Commande(Commande m_Commande) {
-		this.m_Commande = m_Commande;
+	public void setCommande(Commande commande) {
+		this.commande = commande;
 	}
 
-	public Produit getM_Produit() {
-		return m_Produit;
+	public Produit getProduit() {
+		return produit;
 	}
 
-	public void setM_Produit(Produit m_Produit) {
-		this.m_Produit = m_Produit;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 
-	public LignComProd() {
-
-	}
-
-	public LignComProd(int quantitéCom, Commande m_Commande, Produit m_Produit) {
-		super();
-		this.quantitéCom = quantitéCom;
-		this.m_Commande = m_Commande;
-		this.m_Produit = m_Produit;
-	}
+	
 
 }

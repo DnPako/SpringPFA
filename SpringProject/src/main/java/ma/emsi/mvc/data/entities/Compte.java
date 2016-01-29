@@ -31,14 +31,14 @@ public class Compte {
 	private Utilisateur utilisateur;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "compte")
-	private Collection<Profile> m_Profile = new ArrayList<Profile>();
+	private Collection<Profile> profile = new ArrayList<Profile>();
 	
-	public Collection<Profile> getM_Profile() {
-		return m_Profile;
+	public Collection<Profile> getProfile() {
+		return profile;
 	}
 
-	public void setM_Profile(Collection<Profile> m_Profile) {
-		this.m_Profile = m_Profile;
+	public void setProfile(Collection<Profile> m_Profile) {
+		this.profile = m_Profile;
 	}
 
 	public Utilisateur getUtilisateur() {

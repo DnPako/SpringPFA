@@ -22,22 +22,30 @@ public class Produit {
 	private int identifiant;
 	private String intitule;
 	private int quantiteStock;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit", cascade = CascadeType.ALL)
-	private Collection<Stock> m_Stock = new ArrayList<Stock>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
+	private Collection<Stock> stock = new ArrayList<Stock>();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit", cascade = CascadeType.ALL)
-	private Collection<LignComProd> m_Lign = new ArrayList<LignComProd>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
+	private Collection<LignComProd> lign = new ArrayList<LignComProd>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Marque_ID", nullable = false)
 	private Marque marque;
-	
-	public Collection<LignComProd> getM_Lign() {
-		return m_Lign;
+
+	public Collection<Stock> getStock() {
+		return stock;
 	}
 
-	public void setM_Lign(Collection<LignComProd> m_Lign) {
-		this.m_Lign = m_Lign;
+	public void setStock(Collection<Stock> stock) {
+		this.stock = stock;
+	}
+
+	public Collection<LignComProd> getLign() {
+		return lign;
+	}
+
+	public void setLign(Collection<LignComProd> lign) {
+		this.lign = lign;
 	}
 
 	public Marque getMarque() {
@@ -46,14 +54,6 @@ public class Produit {
 
 	public void setMarque(Marque marque) {
 		this.marque = marque;
-	}
-
-	public Collection<Stock> getM_Stock() {
-		return m_Stock;
-	}
-
-	public void setM_Stock(Collection<Stock> m_Stock) {
-		this.m_Stock = m_Stock;
 	}
 
 	public int getIdentifiant() {

@@ -25,26 +25,26 @@ public class Camion {
 	private double longetude;
 	private String marque;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion", cascade = CascadeType.ALL)
-	private Collection<Stock> m_Stock = new ArrayList<Stock>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion")
+	private Collection<Stock> stock = new ArrayList<Stock>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion", cascade = CascadeType.ALL)
-	private Collection<Affectation> m_Affectation = new ArrayList<Affectation>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "camion")
+	private Collection<Affectation> affectation = new ArrayList<Affectation>();
 
-	public Collection<Affectation> getM_Affectation() {
-		return m_Affectation;
+	public Collection<Stock> getStock() {
+		return stock;
 	}
 
-	public void setM_Affectation(Collection<Affectation> m_Affectation) {
-		this.m_Affectation = m_Affectation;
+	public void setStock(Collection<Stock> stock) {
+		this.stock = stock;
 	}
 
-	public Collection<Stock> getM_Stock() {
-		return m_Stock;
+	public Collection<Affectation> getAffectation() {
+		return affectation;
 	}
 
-	public void setM_Stock(Collection<Stock> m_Stock) {
-		this.m_Stock = m_Stock;
+	public void setAffectation(Collection<Affectation> affectation) {
+		this.affectation = affectation;
 	}
 
 	public int getCapacite() {
@@ -103,12 +103,11 @@ public class Camion {
 		this.matricule = matricule;
 	}
 
-	public Camion(int capacite, boolean etat, int identifiant, double lattitude, double longetude, String marque,
+	public Camion(int capacite, boolean etat, double lattitude, double longetude, String marque,
 			String matricule) {
 		super();
 		this.capacite = capacite;
 		this.etat = etat;
-		this.identifiant = identifiant;
 		this.lattitude = lattitude;
 		this.longetude = longetude;
 		this.marque = marque;

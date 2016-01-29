@@ -14,19 +14,22 @@ public class Profile {
 	private int identifiant;
 	private String typeProfile;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profile", cascade = CascadeType.ALL)
-	private Collection<Affectation> m_Affectation = new ArrayList<Affectation>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profile")
+	private Collection<Affectation> affectation = new ArrayList<Affectation>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
-	private Collection<Commande> m_Commande = new ArrayList<Commande>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "destributeur")
+	private Collection<Commande> dest = new ArrayList<Commande>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "revendeur")
+	private Collection<Commande> rev = new ArrayList<Commande>();
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "profile_compte", joinColumns = {
 			@JoinColumn(name = "Profile_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Compte_ID", nullable = false, updatable = false) })
-	private Collection<Compte> m_Compte = new ArrayList<Compte>();
+	private Collection<Compte> compte = new ArrayList<Compte>();
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "profile", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "profile")
 	private Magasin magasin;
 
 	public Magasin getMagasin() {
@@ -37,28 +40,37 @@ public class Profile {
 		this.magasin = magasin;
 	}
 
-	public Collection<Affectation> getM_Affectation() {
-		return m_Affectation;
+	public Collection<Affectation> getAffectation() {
+		return affectation;
 	}
 
-	public void setM_Affectation(Collection<Affectation> m_Affectation) {
-		this.m_Affectation = m_Affectation;
+	public void setAffectation(Collection<Affectation> affectation) {
+		this.affectation = affectation;
 	}
 
-	public Collection<Commande> getM_Commande() {
-		return m_Commande;
+	
+	public Collection<Commande> getDest() {
+		return dest;
 	}
 
-	public void setM_Commande(Collection<Commande> m_Commande) {
-		this.m_Commande = m_Commande;
+	public void setDest(Collection<Commande> dest) {
+		this.dest = dest;
 	}
 
-	public Collection<Compte> getM_Compte() {
-		return m_Compte;
+	public Collection<Commande> getRev() {
+		return rev;
 	}
 
-	public void setM_Compte(Collection<Compte> m_Compte) {
-		this.m_Compte = m_Compte;
+	public void setRev(Collection<Commande> rev) {
+		this.rev = rev;
+	}
+
+	public Collection<Compte> getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Collection<Compte> compte) {
+		this.compte = compte;
 	}
 
 	public int getIdentifiant() {
