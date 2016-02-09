@@ -8,27 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 public class Magasin {
 
+	@GenericGenerator(name = "generator", strategy = "foreign", 
+			parameters = @Parameter(name = "property", value = "user"))
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "generator")
 	@Column(name = "Magasin_ID")
 	private int identifiant;
 	private String adresse;
 	private double lattitude;
 	private double longetude;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	private Profile profile;
-	
-	public Profile getProfile() {
-		return profile;
+	private Utilisateur user;
+
+	public Utilisateur getUser() {
+		return user;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 
 	public int getIdentifiant() {
@@ -63,7 +68,7 @@ public class Magasin {
 		this.longetude = longetude;
 	}
 
-	public Magasin( String adresse, double lattitude, double longetude) {
+	public Magasin(String adresse, double lattitude, double longetude) {
 		super();
 		this.adresse = adresse;
 		this.lattitude = lattitude;

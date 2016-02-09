@@ -1,4 +1,4 @@
-package  ma.emsi.mvc.data.entities;
+package ma.emsi.mvc.data.entities;
 
 import java.util.Date;
 
@@ -23,12 +23,12 @@ public class Affectation {
 	private int identifiant;
 	private Date dateAffectation;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "Profile_ID", nullable = false)
-	private Profile profile;
+	@JoinColumn(name = "Utilisateur_ID", nullable = false)
+	private Utilisateur user;
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Camion_ID", nullable = false)
 	public Camion camion;
-	
+
 	public int getIdentifiant() {
 		return identifiant;
 	}
@@ -45,12 +45,12 @@ public class Affectation {
 		this.dateAffectation = dateAffectation;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public Utilisateur getUser() {
+		return user;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 
 	public Camion getCamion() {

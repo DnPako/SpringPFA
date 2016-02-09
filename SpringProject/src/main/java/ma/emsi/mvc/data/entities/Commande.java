@@ -25,31 +25,31 @@ public class Commande {
 	private Date dateLivraison;
 	private String libelle;
 	private boolean validation;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "revend", referencedColumnName = "Profile_ID", nullable = false)
-	private Profile revendeur;
-	
+	@JoinColumn(name = "revend", referencedColumnName = "Utilisateur_ID", nullable = false)
+	private Utilisateur revendeur;
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "distri", referencedColumnName = "Profile_ID", nullable = false)
-	private Profile destributeur;
-	
+	@JoinColumn(name = "distri", referencedColumnName = "Utilisateur_ID", nullable = false)
+	private Utilisateur destributeur;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commande")
 	private Collection<LignComProd> lign = new ArrayList<LignComProd>();
 
-	public Profile getRevendeur() {
+	public Utilisateur getRevendeur() {
 		return revendeur;
 	}
 
-	public void setRevendeur(Profile revendeur) {
+	public void setRevendeur(Utilisateur revendeur) {
 		this.revendeur = revendeur;
 	}
 
-	public Profile getDestributeur() {
+	public Utilisateur getDestributeur() {
 		return destributeur;
 	}
 
-	public void setDestributeur(Profile destributeur) {
+	public void setDestributeur(Utilisateur destributeur) {
 		this.destributeur = destributeur;
 	}
 
